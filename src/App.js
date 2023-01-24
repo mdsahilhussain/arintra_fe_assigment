@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import { FilterContext, CharacterContext } from "./context/moviesContext";
+import CharacterList from "./components/characterList/CharacterList";
+import Filter from "./components/filter/Filter";
+import CharacterDetail from "./components/characterDetail/CharacterDetail";
 
 function App() {
+  const [characters, setCharacters] = useState([]);
+  const [filter, setFilter] = useState({
+    selectedMovie: "",
+    selectedSpecies: "",
+    birthYearRange: {
+      start: "",
+      end: "",
+    },
+  });
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+
+  useEffect(() => {
+    fetch("https://swapi.py4e.com/api/people")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setCharacters(data.results);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FilterContext.Provider value={{ filter, setFilter }}>
+      <CharacterContext.Provider
+        value={{ characters, selectedCharacter, setSelectedCharacter }}
+      >
+        <Filter />
+        <CharacterList />
+        <CharacterDetail />
+      </CharacterContext.Provider>
+    </FilterContext.Provider>
   );
 }
-
 export default App;
