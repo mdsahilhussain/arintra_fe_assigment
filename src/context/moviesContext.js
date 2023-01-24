@@ -10,6 +10,11 @@ export const FilterContext = createContext({
   setFilter: () => {},
 });
 
+export const ToogleContext = createContext({
+  toggle: false,
+  setToggle: () => {},
+});
+
 export const CharacterContext = createContext({
   characters: [],
   selectedCharacter: null,

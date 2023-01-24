@@ -1,0 +1,17 @@
+button {
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: var(--bgColor);
+  padding: 10px;
+  border: none;
+  outline: none;
+  border: 2px solid var(--bgColor);
+}
+
+button:hover {
+  background-color: var(--bgColor);
+  color: var(--cardColor);
+  border: none;
+}

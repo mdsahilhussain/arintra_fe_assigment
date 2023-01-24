@@ -1,11 +1,18 @@
 import { useState, useEffect } from "react";
-import { FilterContext, CharacterContext } from "./context/moviesContext";
+import "./App.css";
+import {
+  FilterContext,
+  CharacterContext,
+  ToogleContext,
+} from "./context/moviesContext";
 import CharacterList from "./components/characterList/CharacterList";
 import Filter from "./components/filter/Filter";
 import CharacterDetail from "./components/characterDetail/CharacterDetail";
+import Navbar from "./components/navbar/Navbar";
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [toggle, setToggle] = useState(null);
   const [filter, setFilter] = useState({
     selectedMovie: "",
     selectedSpecies: "",
@@ -30,8 +37,20 @@ function App() {
       <CharacterContext.Provider
         value={{ characters, selectedCharacter, setSelectedCharacter }}
       >
-        <Filter />
-        <CharacterList />
+        <ToogleContext.Provider value={{ toggle, setToggle }}>
+          <div className="container">
+            <Navbar />
+            <div
+              className="filter___section"
+              style={toggle ? { display: "block" } : { display: "none" }}
+            >
+              <Filter />
+            </div>
+            <div className="characterList___section">
+              <CharacterList />
+            </div>
+          </div>
+        </ToogleContext.Provider>
         <CharacterDetail />
       </CharacterContext.Provider>
     </FilterContext.Provider>

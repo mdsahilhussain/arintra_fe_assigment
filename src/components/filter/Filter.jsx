@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { FilterContext, CharacterContext } from "../../context/moviesContext";
-
+import Button from "../button/Button";
+import "./filter.css";
 function Filter() {
   const { filter, setFilter } = useContext(FilterContext);
   const { setCharacters } = useContext(CharacterContext);
@@ -13,6 +14,7 @@ function Filter() {
   };
 
   const handleApplyFilter = () => {
+    console.log("handleApplyFilter");
     let queryParams = "";
     if (filter.selectedMovie) {
       queryParams += `&film=${filter.selectedMovie}`;
@@ -24,7 +26,7 @@ function Filter() {
       queryParams += `&birth_year_range=${filter.birthYearRange.start},${filter.birthYearRange.end}`;
     }
     // call the API with the query parameters
-    console.log(queryParams)
+    console.log(queryParams);
     fetch(`https://swapi.py4e.com/api/people?${queryParams}`)
       .then((response) => response.json())
       .then((data) => {
@@ -33,11 +35,12 @@ function Filter() {
   };
 
   return (
-    <div>
+    <div className="fiter">
       <select
         name="selectedMovie"
         value={filter.selectedMovie}
         onChange={handleInputChange}
+        className="radio__button"
       >
         <option value="">All</option>
         <option value="Episode IV">Episode IV: A New Hope</option>
@@ -64,7 +67,9 @@ function Filter() {
         onChange={handleInputChange}
         placeholder="End"
       />
-      <button onClick={handleApplyFilter}>Apply Filter</button>
+      <div onClick={(e) => handleApplyFilter()}>
+        <Button name="Apply Filter" />
+      </div>
     </div>
   );
 }

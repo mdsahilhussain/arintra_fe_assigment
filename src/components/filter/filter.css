@@ -1,0 +1,32 @@
+.fiter {
+  background-color: var(--cardColor);
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  padding: 2rem 3rem;
+  border-radius: 15px;
+}
+
+input {
+  padding: 0.8rem;
+  font-size: 1rem;
+  color: var(--bgColor);
+  border-radius: 5px;
+  border: 2px solid var(--bgColor);
+  background-color: transparent;
+  outline: none;
+  margin-bottom: 1rem;
+}
+
+select {
+  background-color: var(--bgColor);
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: var(--cardColor);
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  border: none;
+  outline: none;
+}
+

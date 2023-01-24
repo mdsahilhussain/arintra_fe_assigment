@@ -1,0 +1,48 @@
+.characterlist {
+  background-color: var(--cardColor);
+  width: fit-content;
+  height: fit-content;
+  padding: 2rem 3rem;
+  border-radius: 25px;
+}
+
+.characterlist___card {
+  height: 35vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.characterlist___card ul {
+  margin-right: 2rem;
+}
+
+.characterlist___card li {
+  margin: 1rem 0rem;
+  border-bottom: 1px solid #0000003b;
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+
+.characterlist___card li:last-child {
+  margin-bottom: 0rem;
+}
+
+.characterlist___card h3 {
+  color: var(--bgColor);
+}
+
+/* width */
+.characterlist___card::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.characterlist___card::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+.characterlist___card::-webkit-scrollbar-thumb {
+  background: #0000003b;
+  border-radius: 10px;
+}
