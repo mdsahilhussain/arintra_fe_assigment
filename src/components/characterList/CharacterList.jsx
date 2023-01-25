@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import "./characterList.css";
 import { CharacterContext } from "../../context/moviesContext";
+import { Link } from "react-router-dom";
 
 function CharacterList() {
   const { characters, selectedCharacter, setSelectedCharacter } =
@@ -15,9 +16,11 @@ function CharacterList() {
       <div className="characterlist___card">
         <ul>
           {characters.map((character, index) => (
-            <li key={index} onClick={() => handleSelectCharacter(character)}>
-              <h3>{character.name}</h3>
-            </li>
+            <Link to="/detail" key={index} state={{ index: index }}>
+              <li onClick={() => handleSelectCharacter(character)}>
+                <h3>{character.name}</h3>
+              </li>
+            </Link>
           ))}
         </ul>
       </div>

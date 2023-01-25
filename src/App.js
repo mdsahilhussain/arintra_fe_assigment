@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import {
   FilterContext,
@@ -27,33 +28,46 @@ function App() {
     fetch("https://swapi.py4e.com/api/people")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setCharacters(data.results);
+        console.log(data.results)
       });
   }, []);
 
   return (
-    <FilterContext.Provider value={{ filter, setFilter }}>
-      <CharacterContext.Provider
-        value={{ characters, selectedCharacter, setSelectedCharacter }}
-      >
-        <ToogleContext.Provider value={{ toggle, setToggle }}>
-          <div className="container">
-            <Navbar />
-            <div
-              className="filter___section"
-              style={toggle ? { display: "block" } : { display: "none" }}
-            >
-              <Filter />
+    <Router>
+      <FilterContext.Provider value={{ filter, setFilter }}>
+        <CharacterContext.Provider
+          value={{ characters, selectedCharacter, setSelectedCharacter,}}
+        >
+          <ToogleContext.Provider value={{ toggle, setToggle }}>
+            <div className="container">
+              <Navbar />
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <div
+                        className="filter___section"
+                        style={
+                          toggle ? { display: "block" } : { display: "none" }
+                        }
+                      >
+                        <Filter />
+                      </div>
+                      <div className="characterList___section">
+                        <CharacterList />
+                      </div>
+                    </>
+                  }
+                />
+                <Route path="/detail" element={<CharacterDetail />} />
+              </Routes>
             </div>
-            <div className="characterList___section">
-              <CharacterList />
-            </div>
-          </div>
-        </ToogleContext.Provider>
-        <CharacterDetail />
-      </CharacterContext.Provider>
-    </FilterContext.Provider>
+          </ToogleContext.Provider>
+        </CharacterContext.Provider>
+      </FilterContext.Provider>
+    </Router>
   );
 }
 export default App;

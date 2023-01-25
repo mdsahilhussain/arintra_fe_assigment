@@ -18,22 +18,19 @@ body {
 
 html {
   scroll-behavior: smooth;
-  scrollbar-color: #0e1831 #0e1831;
-  scrollbar-width: thin;
 }
 
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
+p {
   color: var(--textColor);
   font-family: "Lato", sans-serif;
 }
 
 h1 {
-  font-size: 2.5rem;
+  color: var(--cardColor);
+  font-size: 3rem;
   font-weight: 700;
 }
 
@@ -44,14 +41,13 @@ h2 {
 
 h3 {
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 p {
-  color: var(--textColor);
-  font-weight: 300;
+  font-weight: 400;
   opacity: 70%;
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 ul,
