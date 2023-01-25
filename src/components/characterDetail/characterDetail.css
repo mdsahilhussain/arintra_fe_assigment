@@ -37,3 +37,21 @@
 .characterDetail___spaceships p {
   margin-right: 1rem;
 }
+
+@media screen and (max-width: 1200px) {
+  .characterDetail {
+    padding: 2rem 1.5rem;
+    flex-direction: column;
+  }
+
+  .characterDetail___image {
+    width: 100%;
+  }
+
+
+  .characterDetail___card {
+    width: 100%;
+  }
+
+}
+

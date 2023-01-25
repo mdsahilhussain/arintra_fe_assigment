@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import navbarIcon from "../../assets/logo.png";
-import { Link, useLocation } from "react-router-dom";
+import "./navbar.css";
+import { Link } from "react-router-dom";
 import { ToogleContext } from "../../context/moviesContext";
 import { MdOutlineFilterAlt, MdFilterAlt } from "react-icons/md";
 function Navbar() {
@@ -14,18 +15,11 @@ function Navbar() {
   };
 
   return (
-    <nav
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "1rem 3rem",
-      }}
-    >
+    <nav>
       <Link to="/" onClick={(e) => navToggleHandler()}>
         <h2 style={{ cursor: "pointer" }}>Home</h2>
       </Link>
-      <img src={navbarIcon} alt="" style={{ width: "auto", height: "7rem" }} />
+      <img src={navbarIcon} alt="logo" />
       <h1
         style={{ cursor: "pointer" }}
         type="submit"

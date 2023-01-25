@@ -85,7 +85,6 @@ function CharacterDetail() {
       {selectedCharacter && (
         <div className="characterDetail___card">
           <h1>{selectedCharacter?.name}</h1>
-          <h1>{selectedCharacter?.index}</h1>
           <div className="characterDetail___species ">
             <p>Species: </p>
             <ul>

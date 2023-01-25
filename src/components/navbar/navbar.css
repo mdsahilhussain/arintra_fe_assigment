@@ -1,0 +1,24 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+}
+nav img {
+  width: auto;
+  height: 7rem;
+}
+
+@media screen and (max-width: 1200px) {
+  nav {
+    padding: 1rem 1.5rem;
+  }
+
+  nav img {
+    width: auto;
+    height: 4rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+}

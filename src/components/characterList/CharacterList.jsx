@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function CharacterList() {
   const { characters, selectedCharacter, setSelectedCharacter } =
     useContext(CharacterContext);
-  const { navtoggle, setNavtoggle } = useContext(ToogleContext);
+  const { setNavtoggle } = useContext(ToogleContext);
 
   const handleSelectCharacter = (character) => {
     setSelectedCharacter(character);
