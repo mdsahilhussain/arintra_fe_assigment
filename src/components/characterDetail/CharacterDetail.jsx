@@ -65,7 +65,6 @@ function CharacterDetail() {
           fetch(url).then((res) => res.json())
         )
       );
-      console.log("movies", response);
       setSpestarships(response);
     } catch (error) {
       console.log(error);
@@ -81,7 +80,7 @@ function CharacterDetail() {
   return (
     <div className="characterDetail">
       <div className="characterDetail___image">
-        <img src={array[imgId]} alt={selectedCharacter.name} />
+        <img src={array[imgId]} alt={selectedCharacter?.name} />
       </div>
       {selectedCharacter && (
         <div className="characterDetail___card">

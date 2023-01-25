@@ -13,7 +13,8 @@ import Navbar from "./components/navbar/Navbar";
 
 function App() {
   const [characters, setCharacters] = useState([]);
-  const [toggle, setToggle] = useState(null);
+  const [toggle, setToggle] = useState(false);
+  const [navtoggle, setNavtoggle] = useState(true);
   const [filter, setFilter] = useState({
     selectedMovie: "",
     selectedSpecies: "",
@@ -29,7 +30,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setCharacters(data.results);
-        console.log(data.results)
       });
   }, []);
 
@@ -37,9 +37,11 @@ function App() {
     <Router>
       <FilterContext.Provider value={{ filter, setFilter }}>
         <CharacterContext.Provider
-          value={{ characters, selectedCharacter, setSelectedCharacter,}}
+          value={{ characters, selectedCharacter, setSelectedCharacter }}
         >
-          <ToogleContext.Provider value={{ toggle, setToggle }}>
+          <ToogleContext.Provider
+            value={{ toggle, setToggle, navtoggle, setNavtoggle }}
+          >
             <div className="container">
               <Navbar />
               <Routes>

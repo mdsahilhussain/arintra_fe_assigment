@@ -13,11 +13,13 @@ export const FilterContext = createContext({
 export const ToogleContext = createContext({
   toggle: false,
   setToggle: () => {},
+  navtoggle: true,
+  setNavtoggle: () => {},
 });
 
 export const CharacterContext = createContext({
   characters: [],
   selectedCharacter: null,
   setCharacters: () => {},
-  setSelectedCharacter: () => {}
+  setSelectedCharacter: () => {},
 });
