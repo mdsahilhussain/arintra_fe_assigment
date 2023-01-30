@@ -37,7 +37,12 @@ function App() {
     <Router>
       <FilterContext.Provider value={{ filter, setFilter }}>
         <CharacterContext.Provider
-          value={{ characters, selectedCharacter, setSelectedCharacter }}
+          value={{
+            characters,
+            setCharacters,
+            selectedCharacter,
+            setSelectedCharacter,
+          }}
         >
           <ToogleContext.Provider
             value={{ toggle, setToggle, navtoggle, setNavtoggle }}

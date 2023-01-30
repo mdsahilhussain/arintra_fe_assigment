@@ -1,37 +1,53 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FilterContext, CharacterContext } from "../../context/moviesContext";
 import Button from "../button/Button";
 import "./filter.css";
 function Filter() {
   const { filter, setFilter } = useContext(FilterContext);
-  const { setCharacters } = useContext(CharacterContext);
+  const { setCharacters, characters } = useContext(CharacterContext);
+  const [speciesCharacter, setSpeciesChatacter] = useState([]);
+  const species = [
+    "human",
+    "droid",
+    "wookiee",
+    "rodian",
+    "hutt",
+    "yoda's species",
+    "trandoshan",
+    "mon calamari",
+    "ewok",
+    "sullustan",
+  ];
 
   const handleInputChange = (e) => {
+    console.log(e.target.value);
     setFilter({
       ...filter,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleApplyFilter = () => {
+  const handleApplyFilter = async () => {
     console.log("handleApplyFilter");
-    let queryParams = "";
-    if (filter.selectedMovie) {
-      queryParams += `&film=${filter.selectedMovie}`;
-    }
     if (filter.selectedSpecies) {
-      queryParams += `&species=${filter.selectedSpecies}`;
+      const getSpecies = filter.selectedSpecies.toLowerCase();
+      const Id = species.indexOf(getSpecies) + 1;
+      console.log(Id);
+      fetch(`https://swapi.py4e.com/api/species/${Id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setSpeciesChatacter(data.people);
+        });
     }
-    if (filter.birthYearRange.start && filter.birthYearRange.end) {
-      queryParams += `&birth_year_range=${filter.birthYearRange.start},${filter.birthYearRange.end}`;
+
+    try {
+      const response = await Promise?.all(
+        speciesCharacter?.map((url) => fetch(url).then((res) => res.json()))
+      );
+      setCharacters(response);
+    } catch (error) {
+      console.log(error);
     }
-    // call the API with the query parameters
-    console.log(queryParams);
-    fetch(`https://swapi.py4e.com/api/people?${queryParams}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setCharacters(data.results);
-      });
   };
 
   return (
@@ -47,13 +63,15 @@ function Filter() {
         <option value="Episode V">Episode V: The Empire Strikes Back</option>
         {/* Add more options for the other movies */}
       </select>
+      {console.log(speciesCharacter)}
+      {console.log(characters)}
       <input
         type="text"
         name="selectedSpecies"
         value={filter.selectedSpecies}
         onChange={handleInputChange}
       />
-      <input
+      {/* <input
         type="number"
         name="birthYearRange.start"
         value={filter.birthYearRange.start}
@@ -66,7 +84,7 @@ function Filter() {
         value={filter.birthYearRange.end}
         onChange={handleInputChange}
         placeholder="End"
-      />
+      /> */}
       <div onClick={(e) => handleApplyFilter()}>
         <Button name="Apply Filter" />
       </div>
@@ -75,3 +93,29 @@ function Filter() {
 }
 
 export default Filter;
+
+// if (filter.selectedMovie) {
+//   const getSpecies = filter.selectedSpecies.toLowerCase();
+//   const Id = species.indexOf(getSpecies) + 1;
+//   console.log(Id);
+//   fetch(`https://swapi.py4e.com/api/species/${Id}`)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       setSpeciesChatacter(data.people);
+//     });
+// }
+// queryParams += `&film=${filter.selectedMovie}`;
+// if (filter.selectedSpecies) {
+//   queryParams += `&species=${filter.selectedSpecies}`;
+// }
+// if (filter.birthYearRange.start && filter.birthYearRange.end) {
+//   queryParams += `&birth_year_range=${filter.birthYearRange.start},${filter.birthYearRange.end}`;
+// }
+// call the API with the query parameters
+// console.log("queryParams", queryParams);
+// fetch(`https://swapi.py4e.com/api/people?${queryParams}`)
+//   .then((response) => response.json())
+//   .then((data) => {
+//     setCharacters(data.results);
+//     console.log(data.results);
+//   });
